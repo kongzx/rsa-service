@@ -26,6 +26,8 @@ var pubblicData=jsencrypt.setLongEncrypt(publiukey,strs)
 console.log(pubblicData);
 //解密
 
-
+var strc="p5JIeeaq7lTR9g3QtPJVrn/LJ4jQ9blernPcvBlSrvsgBHTqfsN6JcTb0dWTB+z3jaxe/tAv6OVoz4q2O+e70xE7yAdr51YauVV7TH7hyFpsDf+pXaU2BBPD/kQ8a3BJDpsKbv3MSwg8ENZncO1DALm2JT/YGPhSsvwUQz017fk=";
+var opencs=jsencrypt.setDecrypt(privatekey,strc);
+console.log(opencs)
 var openData=jsencrypt.setDecryptArray(privatekey,pubblicData);
 console.log(openData);
