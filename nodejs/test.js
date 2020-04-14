@@ -14,7 +14,7 @@ var privatekey='-----BEGIN RSA PRIVATE KEY-----\n'+
 '\n-----END RSA PRIVATE KEY-----'
  var strs="a65dfasf1s6f6as4f64a6f4s64gdh";
  for(var pp=0;pp<99;pp++){
-	 strs=strs+pp.toString()
+	 strs=strs+"啊啊"+pp.toString()
  }
   console.log(strs.length)
  console.log(strs)
@@ -28,6 +28,6 @@ console.log(pubblicData);
 
 var strc="p5JIeeaq7lTR9g3QtPJVrn/LJ4jQ9blernPcvBlSrvsgBHTqfsN6JcTb0dWTB+z3jaxe/tAv6OVoz4q2O+e70xE7yAdr51YauVV7TH7hyFpsDf+pXaU2BBPD/kQ8a3BJDpsKbv3MSwg8ENZncO1DALm2JT/YGPhSsvwUQz017fk=";
 var opencs=jsencrypt.setDecrypt(privatekey,strc);
-console.log(opencs)
+//console.log(opencs)
 var openData=jsencrypt.setDecryptArray(privatekey,pubblicData);
 console.log(openData);

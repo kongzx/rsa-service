@@ -5,18 +5,54 @@ var JSEncrypt;var CryptoJS=CryptoJS||function(a,b){var c,e,f,g,h,i,j,k,l,m,n,o,q
 
 const jencrypt=function(){
 	
+	
 	this.setEncrypt=function(publicKey,keyData){
 			const encrypt =new JSEncrypt();
 			encrypt.setPublicKey(publicKey);
 		
 			return encrypt.encrypt(keyData);
 	}
+	this.getRealLen=function(str) {
+		return str.replace(/[^\x00-\xff]/g, '___').length;
+			
+	}
+	this.setEncryptList=function(publicKey,str,max) {
+		var arr=[]
+		    
+		var s=str,reg=/.{40}/g,ppstr=s.match(reg);
+		ppstr.push(s.substring(ppstr.join('').length));
+			
+	    for (var nux=0;nux<ppstr.length;nux++) {
+		    var Nax=this.getRealLen(ppstr[nux]);
+			if(Nax>116){
+				var list=this.setEncryptList(publicKey,ppstr[nux],Nax)
+				for (var nu=0;nu<list.length;nu++) {
+					arr.push(list[nu]);
+				 }
+			}else{
+				arr.push(this.setEncrypt(publicKey,ppstr[nux]));
+			}
+				
+		}
+		return arr;
+	}
 	this.setLongEncrypt=function(publicKey,keyData){
 		var s=keyData,reg=/.{116}/g,rs=s.match(reg);
 		rs.push(s.substring(rs.join('').length));
 		var arr=[];
 		for (var n=0;n<rs.length;n++) {
-			arr.push(this.setEncrypt(publicKey,rs[n]))	
+			var max=this.getRealLen(rs[n]);
+				
+			if(max>116){
+				
+				var list=this.setEncryptList(publicKey,rs[n],max)
+				for (var nu=0;nu<list.length;nu++) {
+					arr.push(list[nu]);
+				}
+			}else{
+				arr.push(this.setEncrypt(publicKey,rs[n]));
+			}
+				
 		}
 		return arr;
 	}
